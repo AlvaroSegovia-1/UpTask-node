@@ -1,26 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
+// importar el controlador
+const proyectosController = require("../controllers/proyectosController");
+
 module.exports = function () {
+  // ruta para el home
+  router.get("/", proyectosController.proyectosHome);
 
-    const productos = [
-        {
-          producto: "Libro",
-          precio: 20,
-        },
-      ];
-      // ruta para el home
-      router.get("/", (req, res) => {
-        res.send("Hola Index");
-        //res.json(productos);
-        //res.render(<h1>Hola amigos</h1>)
-      });
-      
-      router.get("/nosotros", (req, res) => {
-        res.send("Hola nosotros");
-      });
+  /* router.get("/nosotros", proyectosController.nosotros); */
 
-      return router;
+  return router;
 };
-
-
