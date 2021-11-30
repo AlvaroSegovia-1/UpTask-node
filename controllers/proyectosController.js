@@ -1,6 +1,8 @@
 exports.proyectosHome = (req, res) => {
   //res.send("Hola Index");
-  res.render('index')
+  res.render('index',{
+    nombrePagina: 'Proyectos'
+  })
 };
 
 
