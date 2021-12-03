@@ -74,12 +74,13 @@ body {
 .boton {
     background-color: #FDD835;
     text-align: center;
-    transition: background-color .5s ease-in-out;
+    /* transition: background-color .5s ease-in-out; */
     padding: 2rem;
     text-transform: uppercase;
     border: none;
+    border-radius: 10px;
     font-weight: 900;
-    width: 250px;
+    width: 260px;
     margin:0  auto;
 
     display: flex;
@@ -93,7 +94,8 @@ body {
 
 .boton:hover {
     cursor: pointer;
-    background-color: rgb(219, 184, 29)!important;
+    background-color: rgb(219, 184, 29);
+    color: #555353;
 }
 .boton.eliminar {
     margin-top: 1rem;
@@ -243,6 +245,8 @@ body.index {
     max-width: 300px;
     margin: 0 auto 1rem auto;
     text-transform: uppercase;
+    background-color: rgb(241, 202, 202);
+    border-color: 1px solid black;
 }
 .error {
     color: red!important;
