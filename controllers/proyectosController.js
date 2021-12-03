@@ -1,5 +1,6 @@
 const Proyectos = require("../models/Proyectos");
 
+
 exports.proyectosHome = (req, res) => {
   //res.send("Hola Index");
   res.render("index", {
@@ -14,7 +15,7 @@ exports.formularioProyecto = (req, res) => {
   });
 };
 
-exports.nuevoProyecto = (req, res) => {
+exports.nuevoProyecto = async (req, res) => {
   // Enviar a la consola lo que el usuario escriba
   console.log(req.body);
 
@@ -35,10 +36,20 @@ exports.nuevoProyecto = (req, res) => {
     });
   } else {
     // No hay errores
-    // Insertar en la
-    Proyectos.create({ nombre })
+    // Insertar en la BD.
+
+    // Con Async Await
+
+    // Añadir slug
+   /*  const url = slug(nombre).toLowerCase();
+    const proyecto = await Proyectos.create({ nombre, url }); */
+
+    const proyecto = await Proyectos.create({ nombre});
+    res.redirect("/");
+    // Con promesas
+    /* Proyectos.create({ nombre })
       .then(() => console.log("Insertado correctamente"))
-      .catch(error => console.log(error));
+      .catch(error => console.log(error)); */
   }
 
   //res.send("enviaste el Formulario");
