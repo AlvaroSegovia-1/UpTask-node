@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // importar express validator;  puede ser body, cookies, headers, params, query
-const { body } = require("express-validator/check");
+const { body } = require("express-validator");
 
 // importar el controlador
 const proyectosController = require("../controllers/proyectosController");
@@ -17,6 +17,8 @@ module.exports = function () {
   /* router.get("/nosotros", (req, res)=>{
       res.render('nosotros')
   }); */
+  //Listar Proyecto
+  router.get('/proyectos/:url', proyectosController.proyectoPorUrl)
 
   return router;
 };

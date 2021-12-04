@@ -1,21 +1,27 @@
 const Proyectos = require("../models/Proyectos");
 
+exports.proyectosHome = async (req, res) => {
+  const proyectos = await Proyectos.findAll();
 
-exports.proyectosHome = (req, res) => {
   //res.send("Hola Index");
   res.render("index", {
     nombrePagina: "Proyectos",
+    proyectos,
   });
 };
 
-exports.formularioProyecto = (req, res) => {
+exports.formularioProyecto = async (req, res) => {
+  const proyectos = await Proyectos.findAll();
+
   //res.send("Hola Index");
   res.render("nuevoProyecto", {
     nombrePagina: "Nuevo Proyecto",
+    proyectos
   });
 };
 
 exports.nuevoProyecto = async (req, res) => {
+    const proyectos = await Proyectos.findAll();
   // Enviar a la consola lo que el usuario escriba
   console.log(req.body);
 
@@ -33,6 +39,7 @@ exports.nuevoProyecto = async (req, res) => {
     res.render("nuevoProyecto", {
       nombrePagina: "Nuevo Proyecto",
       errores,
+      proyectos
     });
   } else {
     // No hay errores
@@ -41,10 +48,10 @@ exports.nuevoProyecto = async (req, res) => {
     // Con Async Await
 
     // Añadir slug
-   /*  const url = slug(nombre).toLowerCase();
+    /*  const url = slug(nombre).toLowerCase();
     const proyecto = await Proyectos.create({ nombre, url }); */
 
-    const proyecto = await Proyectos.create({ nombre});
+    const proyecto = await Proyectos.create({ nombre });
     res.redirect("/");
     // Con promesas
     /* Proyectos.create({ nombre })
@@ -58,3 +65,20 @@ exports.nuevoProyecto = async (req, res) => {
 /* exports.nosotros = (req, res) => {
     res.send("Hola nosotros");
   } */
+
+exports.proyectoPorUrl = async (req, res, next) => {
+  const proyectos = await Proyectos.findAll();
+
+  const proyecto = await Proyectos.findOne({
+    where: {
+      url: req.params.url,
+    },
+  });
+  if (!proyecto) return next();
+  // render a la vista
+  res.render("tareas", {
+    nombrePagina: "Tareas del Proyecto",
+    proyecto,
+    proyectos,
+  });
+};
