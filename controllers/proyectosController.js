@@ -5,7 +5,7 @@ exports.proyectosHome = async (req, res) => {
 
   //res.send("Hola Index");
   res.render("index", {
-    nombrePagina: "Proyectos",
+    nombrePagina: "Proyectos " + res.locals.year,
     proyectos,
   });
 };
@@ -133,10 +133,22 @@ exports.actualizarProyecto = async (req, res) => {
     });
   } else {
     await Proyectos.update(
-        { nombre: nombre },
-       { where: {id: req.params.id}}
-        );
+      { nombre: nombre },
+      { where: { id: req.params.id } },
+    );
     res.redirect("/");
-    
-}
-}
+  }
+};
+
+exports.eliminarProyecto = async (req, res, next) => {
+  // req, query o params
+  /* console.log(req.query); */
+  const { urlProyecto } = req.query;
+  const resultado = await Proyectos.destroy({
+    where: { url: urlProyecto },
+  });
+  if (!resultado) {
+    return next();
+  }
+  res.status(200).send("Proyecto Eliminado");
+};
