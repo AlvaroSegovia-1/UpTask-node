@@ -38,5 +38,8 @@ router.delete('/proyectos/:url', proyectosController.eliminarProyecto)
 // Tareas
 router.post('/proyectos/:url', tareasController.agregarTarea)
 
+// Actualizar Tarea
+router.patch('/tareas/:id', tareasController.cambiarEstadoTarea)
+
   return router;
 };
