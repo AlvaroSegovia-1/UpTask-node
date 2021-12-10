@@ -2,7 +2,7 @@ const { noExtendLeft } = require("sequelize/dist/lib/operators");
 const Proyectos = require("../models/Proyectos");
 const Tareas = require("../models/Tareas");
 
-exports.agregarTarea = async (req, res) => {
+exports.agregarTarea = async (req, res, next) => {
   //res.send("Enviado");
   // console.log(req.params.url);
   // obetemos el Proyecto actual

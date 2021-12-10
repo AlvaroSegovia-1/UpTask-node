@@ -11,13 +11,13 @@ block contenido
             .campo.enviar 
                 input.boton.nueva-tarea(type="submit" value="Agregar")
 
-        pre= vardump(tareas)
+        //-pre= vardump(tareas)
 
         .listado-pendientes
             ul 
               if tareas.length
                 each tarea in tareas
-                    li.tarea
+                    li.tarea(data-tarea=tarea.id)
                         p= tarea.tarea
                         .acciones 
                             if tarea.estado
