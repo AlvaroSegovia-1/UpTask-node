@@ -39,11 +39,11 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "./views"));
 
 // Pasar var dump a la aplicación
-app.use((req, res, next)=> {
-    res.locals.year = 2021
-    res.locals.vardump = helpers.vardump
-    next()
-})
+app.use((req, res, next) => {
+  res.locals.year = 2021;
+  res.locals.vardump = helpers.vardump;
+  next();
+});
 
 // habilitar bodyParser para leer datos del formulario
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -66,3 +66,5 @@ app.use('/', (req, res) => {
 
 // indicamos el puerto
 app.listen(3500);
+
+require("./handlers/email");
