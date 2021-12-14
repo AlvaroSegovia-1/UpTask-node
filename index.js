@@ -14,6 +14,8 @@ const db = require("./config/db");
 // Crea la tabla respecto al modelo
 require("./models/Proyectos");
 require("./models/Tareas");
+require("./models/Usuarios");
+
 db.sync()
   .then(() => console.log("Conectado al Servidor"))
   .catch(error => console.log(error));
