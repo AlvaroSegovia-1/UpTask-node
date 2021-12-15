@@ -6,8 +6,9 @@ const { body } = require("express-validator");
 
 // importar el controlador
 const proyectosController = require("../controllers/proyectosController");
-const tareasController = require('../controllers/tareasController')
-const usuariosController = require('../controllers/usuariosController')
+const tareasController = require("../controllers/tareasController");
+const usuariosController = require("../controllers/usuariosController");
+//const usuariosController = require("../controllers/usuariosController/");
 
 module.exports = function () {
   // ruta para el home
@@ -33,19 +34,20 @@ module.exports = function () {
     proyectosController.actualizarProyecto,
   );
 
-  //  Eliminar Proyecto 
-router.delete('/proyectos/:url', proyectosController.eliminarProyecto)
+  //  Eliminar Proyecto
+  router.delete("/proyectos/:url", proyectosController.eliminarProyecto);
 
-// Tareas
-router.post('/proyectos/:url', tareasController.agregarTarea)
+  // Tareas
+  router.post("/proyectos/:url", tareasController.agregarTarea);
 
-// Actualizar Tarea
-router.patch('/tareas/:id', tareasController.cambiarEstadoTarea)
+  // Actualizar Tarea
+  router.patch("/tareas/:id", tareasController.cambiarEstadoTarea);
 
-// Eliminar Tarea
-router.delete('/tareas/:id', tareasController.eliminarTarea)
+  // Eliminar Tarea
+  router.delete("/tareas/:id", tareasController.eliminarTarea);
 
-// Crear nueva cuenta
-router.get('/crear-cuenta',usuariosController.formCrearCuenta)
+  // Crear nueva cuenta
+  router.get("/crear-cuenta", usuariosController.formCrearCuenta);
+  router.post("/crear-cuenta", usuariosController.crearCuenta);
   return router;
 };
